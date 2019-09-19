@@ -9,6 +9,8 @@ current_working_dir=$(pwd)
 tools_dir=${current_working_dir}/$(dirname $0)
 cd $tools_dir
 
+source tar_utils.sh 
+
 install_speech_tools=true
 install_festival=true
 install_festvox=true
@@ -25,7 +27,8 @@ if [ "$install_speech_tools" = true ]; then
         echo "please download speech tools from $speech_tools_url"
         exit 1
     fi
-    tar xzf speech_tools-2.4-release.tar.gz
+    
+    expand_file speech_tools-2.4-release.tar.gz
 
     echo "compiling speech tools..."
     (
@@ -54,7 +57,7 @@ if [ "$install_festival" = true ]; then
         echo "please download Festival from $festival_url"
         exit 1
     fi
-    tar xzf festival-2.4-release.tar.gz
+    expand_file festival-2.4-release.tar.gz
 
     echo "compiling festival..."
     (
@@ -80,9 +83,9 @@ if [ "$install_festival" = true ]; then
         echo "please download dictionaries from $festival_url"
         exit 1
     fi
-    tar xzf festlex_CMU.tar.gz
-    tar xzf festlex_OALD.tar.gz
-    tar xzf festlex_POSLEX.tar.gz
+    expand_file festlex_CMU.tar.gz
+    expand_file festlex_OALD.tar.gz
+    expand_file festlex_POSLEX.tar.gz
 
     echo "downloading some voices for English..."
     festival_voice_url=http://festvox.org/packed/festival/2.4/voices
@@ -101,9 +104,9 @@ if [ "$install_festival" = true ]; then
         echo "please download Festival voices from $festival_voice_url"
         exit 1
     fi
-    tar xzf festvox_kallpc16k.tar.gz
-    tar xzf festvox_rablpc16k.tar.gz
-    tar xzf festvox_cmu_us_slt_cg.tar.gz
+    expand_file festvox_kallpc16k.tar.gz
+    expand_file festvox_rablpc16k.tar.gz
+    expand_file festvox_cmu_us_slt_cg.tar.gz
 
 fi
 
@@ -123,7 +126,7 @@ if [ "$install_festvox" = true ]; then
         echo "please download festvox from $festvox_url"
         exit 1
     fi
-    tar xzf festvox-2.7.0-release.tar.gz
+    expand_file festvox-2.7.0-release.tar.gz
 
     echo "compiling festvox..."
     (

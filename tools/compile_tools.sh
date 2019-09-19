@@ -7,6 +7,7 @@
 
 tools_dir=$(dirname $0)
 cd $tools_dir
+source tar_utils.sh 
 
 install_sptk=true
 install_postfilter=true
@@ -26,7 +27,7 @@ if [ "$install_sptk" = true ]; then
         echo "please download the SPTK-3.9 from $sptk_url"
         exit 1
     fi
-    tar xzf SPTK-3.9.tar.gz
+    expand_file SPTK-3.9.tar.gz
 
     echo "compiling SPTK..."
     (
@@ -48,7 +49,7 @@ if [ "$install_sptk" = true ]; then
             echo "please download the postfilter from $postfilter_url"
             exit 1
         fi
-        tar xzf postfilter.tar.gz
+        expand_file postfilter.tar.gz
         
         echo "compiling postfilter..."
         (
@@ -95,7 +96,6 @@ if [ "$install_magphase" = true ]; then
     echo "downloading MagPhase vocoder..."
     rm -rf magphase
     git clone https://github.com/CSTR-Edinburgh/magphase.git
-    #git clone https://github.com/felipeespic/magphase.git
 
     echo "configuring MagPhase..."
     (
@@ -114,12 +114,9 @@ if [ "$install_magphase" = true ]; then
     )
 fi
 
-
 # 5. Copy binaries
 echo "deleting downloaded tar files..."
 rm -rf $tools_dir/*.tar.gz
-
-
 
 mkdir -p bin
 mkdir -p $SPTK_BIN_DIR

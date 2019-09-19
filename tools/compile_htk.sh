@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source tar_utils.sh
+
 if test "$#" -ne 2; then
     echo "################################"
     echo "Usage: $0 <HTK_USERNAME> <HTK_PASSWORD>"
@@ -34,9 +36,9 @@ else
 fi
 
 ## Unpack everything:
-tar xzf HTK-3.4.1.tar.gz
-tar xzf HDecode-3.4.1.tar.gz
-tar xf HTS-2.3alpha_for_HTK-3.4.1.tar.bz2
+expand_file HTK-3.4.1.tar.gz
+expand_file HDecode-3.4.1.tar.gz
+expand_file HTS-2.3alpha_for_HTK-3.4.1.tar.bz2
 
 # apply HTS patch
 cd htk
