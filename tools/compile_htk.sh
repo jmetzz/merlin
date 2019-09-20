@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source tar_utils.sh
+
 
 if test "$#" -ne 2; then
     echo "################################"
@@ -13,6 +13,7 @@ fi
 current_working_dir=$(pwd)
 tools_dir=${current_working_dir}/$(dirname $0)
 cd $tools_dir
+source tar_utils.sh 
 
 HTK_USERNAME=$1
 HTK_PASSWORD=$2
